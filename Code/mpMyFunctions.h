@@ -30,6 +30,11 @@ namespace mp
 */
 MYPROJECT_WINEXPORT double MyFirstFunction(int a);
 
+/**
+* \brief My Prime Checker, checks whether an integer between 0 and 1000 is prime.
+*/
+MYPROJECT_WINEXPORT bool MyPrimeChecker(int a);
+
 } // end namespace
 
 #endif
