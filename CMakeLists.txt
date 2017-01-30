@@ -67,7 +67,7 @@ set(CMAKE_MODULE_PATH
 # Build options.
 ######################################################################
 option(BUILD_TESTING "Build Unit tests." ON)
-option(BUILD_SHARED_LIBS "Build Shared Libraries" ON)
+option(BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
 if(WIN32 AND NOT BUILD_SHARED_LIBS)
   add_definitions(-DMYPROJECT_STATIC)
 endif()
