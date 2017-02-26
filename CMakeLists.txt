@@ -15,7 +15,7 @@
 ######################################################################
 # Set the minimum CMake version.
 ######################################################################
-set(MYPROJECT_CMAKE_MINIMUM_REQUIRED_VERSION 3.2)
+set(MYPROJECT_CMAKE_MINIMUM_REQUIRED_VERSION 3.7)
 cmake_minimum_required(VERSION ${MYPROJECT_CMAKE_MINIMUM_REQUIRED_VERSION})
 
 
@@ -31,7 +31,6 @@ foreach(policy ${project_policies})
 endforeach()
 
 project(MyProject VERSION 00.00.1)
-
 
 ######################################################################
 # Setting supported build types. Should ONLY be Release or Debug.
@@ -58,10 +57,10 @@ endif()
 # Setup the path to load CMake macros, and extra CMake files.
 ######################################################################
 set(CMAKE_MODULE_PATH
+    ${CMAKE_SOURCE_DIR}/CMake
     ${CMAKE_BINARY_DIR}
     ${CMAKE_MODULE_PATH}
    )
-
 
 ######################################################################
 # Build options.
@@ -98,6 +97,12 @@ endif(BUILD_TESTING)
 # Add Mandatory Requirements
 ######################################################################
 set(ALL_THIRD_PARTY_LIBRARIES)
+
+# Eigen Package for Linear Algebra
+
+find_package(Eigen REQUIRED)
+include_directories(${Eigen_INCLUDE_DIR})
+add_definitions(-DBUILD_Eigen)
 
 # e.g. for OpenCV
 # find_package(OpenCV REQUIRED)
