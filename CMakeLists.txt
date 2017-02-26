@@ -79,7 +79,6 @@ if(WIN32 AND NOT BUILD_SHARED_LIBS)
   add_definitions(-DMYPROJECT_STATIC)
 endif()
 
-
 ######################################################################
 # Configure Dart testing support.  This should be done before any
 # message(FATAL_ERROR ...) commands are invoked.
@@ -112,6 +111,36 @@ find_package(Eigen REQUIRED)
 include_directories(${Eigen_INCLUDE_DIR})
 add_definitions(-DBUILD_Eigen)
 
+# Boost Libraries
+ 
+set(BOOST_LIBRARYDIR ${BOOST_ROOT}/stage/lib)
+set(Boost_LIBRARY_DIR_DEBUG ${BOOST_ROOT}/stage/lib)
+set(Boost_LIBRARY_DIR_RELEASE ${BOOST_ROOT}/stage/lib) 
+set(BOOST_INCLUDEDIR ${BOOST_ROOT}/include)
+#set(Boost_DEBUG ON)
+set(Boost_NO_SYSTEM_PATHS ON)
+set(Boost_NO_BOOST_CMAKE ON)
+
+if(BUILD_SHARED_LIBS)
+  set(Boost_USE_STATIC_LIBS OFF)
+  set(Boost_USE_STATIC_RUNTIME OFF)
+else()
+  set(Boost_USE_STATIC_LIBS ON)
+  set(Boost_USE_STATIC_RUNTIME ON) 
+endif()
+
+find_package(Boost 1.63 EXACT COMPONENTS filesystem system date_time regex REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
+
+if(WIN32 AND BUILD_SHARED)
+  list(APPEND ALL_COMPILE_OPTIONS -DBOOST_ALL_DYN_LINK)
+endif()
+
+list(APPEND ALL_THIRD_PARTY_LIBRARIES ${Boost_LIBRARIES})
+add_definitions(-DBUILD_Boost)
+set(ADDITIONAL_SEARCH_PATHS "${BOOST_ROOT}/bin;${ADDITIONAL_SEARCH_PATHS}")
+
 # e.g. for OpenCV
 # find_package(OpenCV REQUIRED)
 # include_directories(${OpenCV_INCLUDE_DIRS})
@@ -132,6 +161,7 @@ set(ALL_LIBRARIES myproject ${ALL_THIRD_PARTY_LIBRARIES})
 configure_file(${CMAKE_SOURCE_DIR}/Documentation/License.dox ${CMAKE_BINARY_DIR}/Doxygen/License.dox)
 configure_file(${CMAKE_SOURCE_DIR}/LICENSE.txt ${CMAKE_BINARY_DIR}/LICENSE.txt @ONLY)
 configure_file(${CMAKE_SOURCE_DIR}/Documentation/Licenses/Eigen.txt ${CMAKE_BINARY_DIR}/LICENSE_Eigen.txt)
+configure_file(${CMAKE_SOURCE_DIR}/Documentation/Licenses/Boost.txt ${CMAKE_BINARY_DIR}/LICENSE_Boost.txt)
 configure_file(${CMAKE_SOURCE_DIR}/README.md ${CMAKE_BINARY_DIR}/README.md @ONLY)
 
 

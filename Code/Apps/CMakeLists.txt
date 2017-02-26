@@ -14,6 +14,8 @@
 
 set(MYPROJECT_APPS
   mpMyFirstApp
+  mpMySecondApp
+  mpMyThirdApp
 )
 foreach(app ${MYPROJECT_APPS})
   add_executable(${app} ${app}.cpp)
