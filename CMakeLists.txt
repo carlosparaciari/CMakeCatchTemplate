@@ -112,12 +112,8 @@ include_directories(${Eigen_INCLUDE_DIR})
 add_definitions(-DBUILD_Eigen)
 
 # Boost Libraries
- 
-set(BOOST_LIBRARYDIR ${BOOST_ROOT}/stage/lib)
-set(Boost_LIBRARY_DIR_DEBUG ${BOOST_ROOT}/stage/lib)
-set(Boost_LIBRARY_DIR_RELEASE ${BOOST_ROOT}/stage/lib) 
-set(BOOST_INCLUDEDIR ${BOOST_ROOT}/include)
-#set(Boost_DEBUG ON)
+
+# set(Boost_DEBUG ON)
 set(Boost_NO_SYSTEM_PATHS ON)
 set(Boost_NO_BOOST_CMAKE ON)
 
