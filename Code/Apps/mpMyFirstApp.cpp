@@ -20,6 +20,11 @@ int main(int argc, char** argv)
 {
   std::cout << "Calculating ... " << mp::MyFirstFunction(1) << std::endl;
 
+  int number = 734;
+  auto is_prime = mp::MyPrimeChecker(number);
+
+  std::cout << "Is the number " << number << " prime? " << is_prime << std::endl;
+
   Eigen::MatrixXd m(2,2);
 
   m(0,0) = 3;

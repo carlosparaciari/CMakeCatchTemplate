@@ -63,6 +63,14 @@ set(CMAKE_MODULE_PATH
    )
 
 ######################################################################
+# Choose C++ standard
+######################################################################
+set(MYPROJECT_CXX_STANDARD 11)
+set(CMAKE_CXX_EXTENSIONS 0)
+set(CMAKE_CXX_STANDARD ${MYPROJECT_CXX_STANDARD})
+set(CMAKE_CXX_STANDARD_REQUIRED 1)
+
+######################################################################
 # Build options.
 ######################################################################
 option(BUILD_TESTING "Build Unit tests." ON)
