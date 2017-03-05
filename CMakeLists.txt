@@ -160,6 +160,12 @@ configure_file(${CMAKE_SOURCE_DIR}/Documentation/Licenses/Eigen.txt ${CMAKE_BINA
 configure_file(${CMAKE_SOURCE_DIR}/Documentation/Licenses/Boost.txt ${CMAKE_BINARY_DIR}/LICENSE_Boost.txt)
 configure_file(${CMAKE_SOURCE_DIR}/README.md ${CMAKE_BINARY_DIR}/README.md @ONLY)
 
+######################################################################
+
+# Copy data test files to output
+
+######################################################################
+configure_file(${CMAKE_SOURCE_DIR}/Testing/Data/file_input_test.txt ${CMAKE_BINARY_DIR}/Testing/Data/file_input_test.txt)
 
 ######################################################################
 # Provide support for manually running Doxygen in build folder.
